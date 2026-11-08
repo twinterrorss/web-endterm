@@ -1,0 +1,63 @@
+.stream-card .preview-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: calc(100% - 24px);
+    margin: 0 12px 12px;
+    padding: 10px 14px;
+
+    background: #13251e;
+    color: var(--green);
+    border: 1px solid #2a805a;
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: background-color 0.2s,
+        border-color 0.2s,
+        color 0.2s;
+}
+
+.stream-card .preview-toggle::after {
+    content: "⌄";
+    font-size: 18px;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+
+.stream-card .preview-toggle:hover {
+    background: var(--green);
+    color: #07130d;
+    border-color: var(--green);
+}
+
+
+.stream-card .preview-toggle[aria-expanded="true"] {
+    border-color: var(--green);
+}
+
+
+.stream-card .preview-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+
+.stream-card .preview-details {
+    display: none;
+    margin: 0 12px 14px;
+    padding: 12px;
+
+    background: #1b1d23;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    border-radius: 8px;
+
+    color: #c4c4cc;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}

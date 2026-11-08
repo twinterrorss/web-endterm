@@ -57,6 +57,7 @@
         <span class="text-secondary" id="games-count"></span>
       </div>
 
+
       <div class="mb-3">
         <label for="game-search" class="form-label">
           Search games
@@ -65,9 +66,23 @@
         <input type="search" id="game-search" class="form-control" placeholder="Enter game name...">
       </div>
 
-      <div class="slot-grid row g-3" id="games">
 
+      <div class="d-flex flex-wrap gap-2 mb-4" id="game-categories">
+        <button type="button" class="btn btn-outline-light category-btn active" data-category="All">
+          All
+        </button>
+        <button type="button" class="btn btn-outline-light category-btn" data-category="Adventure">
+          Adventure
+        </button>
+        <button type="button" class="btn btn-outline-light category-btn" data-category="Arcade">
+          Arcade
+        </button>
       </div>
+
+
+      <div class="slot-grid row g-3" id="games"></div>
+
+
       <section class="info-panel mt-4 p-3" id="game-guide">
         <h2>About this collection</h2>
         <p class="mb-0">A showcase of four fictional arcade themes. Browse the artwork and game concepts; this student

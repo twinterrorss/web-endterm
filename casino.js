@@ -25,7 +25,7 @@ function renderGames(games) {
         image.className = "img-fluid";
         image.width = 320;
         image.height = 240;
-        image.loading = "lazy";
+        // image.loading = "lazy";
 
         const title = document.createElement("h3");
         title.textContent = game.name;
@@ -42,24 +42,53 @@ function renderGames(games) {
     counter.textContent = `${games.length} featured games`;
 }
 
-function filterGames(query) {
+function filterGames(query, category) {
     const searchText = query.trim().toLowerCase();
 
     return casinoGames.filter((game) => {
-        return game.name.toLowerCase().includes(searchText);
+        const matchesSearch = game.name
+            .toLowerCase()
+            .includes(searchText);
+
+        const matchesCategory =
+            category === "All" || game.category === category;
+
+        return matchesSearch && matchesCategory;
     });
 }
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderGames(casinoGames);
     const searchInput = document.getElementById("game-search");
 
-    searchInput.addEventListener("input", () => {
+    const categoryButtons = document.querySelectorAll(".category-btn");
+
+    let selectedCategory = "All";
+
+    function updateGames() {
         const query = searchInput.value;
 
-        const filteredGames = filterGames(query);
+        const filteredGames = filterGames(query, selectedCategory);
 
         renderGames(filteredGames);
-    });
+    }
+
+    searchInput.addEventListener("input", updateGames);
+
+    for (const button of categoryButtons) {
+        button.addEventListener("click", () => {
+            selectedCategory = button.dataset.category;
+
+            for (const item of categoryButtons) {
+                const isSelected = item.dataset.category === selectedCategory;
+
+                item.classList.toggle("active", isSelected);
+                // item.setAttribute("aria-pressed", String(isSelected));
+            }
+
+            updateGames();
+        });
+    }
+
+    updateGames();
 });
