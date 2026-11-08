@@ -30,4 +30,29 @@ $(document).ready(function () {
         button.attr("aria-expanded", String(!isOpen));
         button.text(isOpen ? "More info" : "Hide info");
     });
+
+
+
+    $("#stream-search").on("input", function () {
+        const query = $(this).val().trim().toLowerCase();
+
+        let matches = 0;
+
+        $(".stream-card").each(function () {
+            const card = $(this);
+
+            const title = card.find("h3").text().toLowerCase();
+
+            const column = card.closest(".col-12");
+
+            if (title.includes(query)) {
+                column.stop(true, true).fadeIn(200);
+                matches++;
+            } else {
+                column.stop(true, true).fadeOut(200);
+            }
+        });
+
+        $("#no-stream-results").toggle(matches === 0);
+    });
 })
