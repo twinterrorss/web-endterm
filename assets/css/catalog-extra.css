@@ -1,0 +1,10 @@
+.slot-card {
+  cursor: pointer;
+  transition: border-color .2s, transform .2s;
+}
+
+.slot-card:hover,
+.slot-card:focus-within {
+  border-color: var(--green);
+  transform: translateY(-2px);
+}
