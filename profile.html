@@ -6,6 +6,9 @@
     <title>Cyber Win | Profile</title>
     <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link href="assets/css/profile-extra.css" rel="stylesheet">
+    <link href="assets/css/shared.css" rel="stylesheet">
+    <script src="assets/js/shared.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -46,7 +49,7 @@
           <img class="profile-photo img-fluid" src="assets/images/avatar.svg" width="80" height="80" alt="Illustrated avatar of the demo account">
           <div>
             <b class="verified">♙ ACCOUNT VERIFIED</b>
-            <h1>DEXTER MORGAN</h1>
+            <h1 id="display-name">DEXTER MORGAN</h1>
             <p>Player ID CW-884-291 · Member since October 2022</p>
           </div>
           <div class="member-level">
@@ -63,18 +66,49 @@
             <section class="profile-card">
               <div class="card-title">
                 <h2>♙ PERSONAL DATA</h2>
-                <a href="#account-info">ABOUT</a>
+                <button id="edit-profile" class="btn btn-sm btn-success" type="button" aria-expanded="false" aria-controls="profile-form">Edit Profile</button>
               </div>
               <dl>
                 <dt>✉ Email</dt>
-                <dd>alex.morgan@email.com</dd>
+                <dd id="display-email">alex.morgan@email.com</dd>
                 <dt>♧ Phone</dt>
                 <dd>+1 917 · • • • • 28</dd>
                 <dt>▧ Date of birth</dt>
                 <dd>14 Aug 1992</dd>
                 <dt>◉ Country</dt>
-                <dd>United States</dd>
+                <dd id="display-country">United States</dd>
               </dl>
+              <form id="profile-form" class="profile-form" novalidate hidden aria-label="Edit demo profile">
+                <p>All fields are required. Use demo data only; it is stored in this browser.</p>
+                <div class="mb-3">
+                  <label for="profile-name" class="form-label">Name</label>
+                  <input id="profile-name" class="form-control" type="text" minlength="3" maxlength="60" required aria-describedby="profile-name-error">
+                  <p id="profile-name-error" class="invalid-feedback" aria-live="polite"></p>
+                </div>
+                <div class="mb-3">
+                  <label for="profile-email" class="form-label">Email</label>
+                  <input id="profile-email" class="form-control" type="email" maxlength="100" required aria-describedby="profile-email-error">
+                  <p id="profile-email-error" class="invalid-feedback" aria-live="polite"></p>
+                </div>
+                <div class="mb-3">
+                  <label for="profile-country" class="form-label">Country</label>
+                  <select id="profile-country" class="form-select" required aria-describedby="profile-country-error">
+                    <option value="">Choose a country</option>
+                    <option>Kazakhstan</option>
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Germany</option>
+                    <option>Turkey</option>
+                    <option>Other</option>
+                  </select>
+                  <p id="profile-country-error" class="invalid-feedback" aria-live="polite"></p>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-success" type="submit">Save profile</button>
+                  <button id="cancel-profile" class="btn dark-button" type="button">Cancel</button>
+                </div>
+              </form>
+              <p id="profile-message" class="profile-message" role="status"></p>
             </section>
             <section class="profile-card">
               <div class="card-title">
@@ -88,11 +122,15 @@
                 <dd>Decimal</dd>
                 <dt>Currency</dt>
                 <dd>USD</dd>
-                <dt>Marketing notifications</dt>
+                <dt><label for="notifications">Marketing notifications</label></dt>
                 <dd>
-                  <span class="toggle" role="img" aria-label="Enabled"></span>
+                  <div class="notification-control form-switch">
+                    <input id="notifications" class="form-check-input" type="checkbox" role="switch" checked aria-describedby="notifications-state">
+                    <span id="notifications-state">Enabled</span>
+                  </div>
                 </dd>
               </dl>
+              <p id="settings-message" class="settings-message" role="status"></p>
             </section>
           </div>
           <div class="profile-center col-12 col-md-6 col-xl-4">
@@ -171,11 +209,33 @@
             </section>
           </div>
         </div>
+        <section class="profile-card saved-items mt-4" aria-labelledby="saved-title">
+          <div class="card-title">
+            <h2 id="saved-title">Saved Items</h2>
+            <button id="refresh-saved" class="btn dark-button" type="button">Refresh saved items</button>
+          </div>
+          <p id="saved-count" aria-live="polite">0 games · 0 planned viewings</p>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <h3>Favorite games</h3>
+              <ul id="saved-games"></ul>
+              <p id="saved-games-empty" class="saved-empty">No favorite games saved in this browser.</p>
+              <a href="slots.html">Open Casino</a>
+            </div>
+            <div class="col-12 col-md-6">
+              <h3>Planned viewings</h3>
+              <ul id="saved-schedule"></ul>
+              <p id="saved-schedule-empty" class="saved-empty">No planned viewings saved in this browser.</p>
+              <a href="index.html#watchlist">Open match schedule</a>
+            </div>
+          </div>
+          <p id="saved-message" class="profile-message" role="status"></p>
+        </section>
         <section class="info-panel mt-4 p-3" id="account-info">
           <h2>About this demo account</h2>
-          <p>This profile contains sample data. Account settings and balances are read-only.</p>
+          <p>This profile contains sample data. You can edit the demo profile and preferences; balances are read-only.</p>
           <ul class="mb-0">
-            <li>Contact information and personal preferences.</li>
+            <li>Profile, theme and notification preferences are saved only in this browser. No real notifications are sent.</li>
             <li>Sample account activity and transaction history.</li>
             <li>Deposits and withdrawals are unavailable in this demo.</li>
           </ul>
@@ -190,6 +250,8 @@
         </div>
       </footer>
     </div>
+    <script src="catalog-data.js"></script>
+    <script src="assets/js/profile.js"></script>
   </body>
 </html>
 
