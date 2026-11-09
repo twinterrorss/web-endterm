@@ -1,0 +1,51 @@
+.profile-header h1 {
+  overflow-wrap: anywhere;
+}
+
+.profile-form {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.profile-form .invalid-feedback {
+  display: block;
+}
+
+.profile-message,
+.settings-message {
+  margin: 12px 0 0;
+  color: var(--green);
+}
+
+.profile-message:empty,
+.settings-message:empty {
+  display: none;
+}
+
+.notification-control {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.notification-control .form-check-input {
+  margin: 0;
+  float: none;
+  cursor: pointer;
+}
+
+.saved-items li {
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.saved-items a {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.saved-empty {
+  color: var(--muted);
+}

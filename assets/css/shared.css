@@ -1,0 +1,116 @@
+.site-header {
+  flex-wrap: wrap;
+}
+
+.theme-toggle {
+  border: 1px solid var(--border);
+  color: var(--white);
+  background: var(--panel);
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.theme-toggle:hover {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.theme-message {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+.theme-message:empty {
+  display: none;
+}
+
+/* Existing pages use these variables; fixed dark surfaces need overrides below. */
+html[data-bs-theme="light"] {
+  color-scheme: light;
+  --bg: #f2f5f4;
+  --panel: #ffffff;
+  --white: #182820;
+  --green: #087443;
+  --gold: #806000;
+  --muted: #58645e;
+  --border: #cbd5cf;
+}
+
+[data-bs-theme="light"] .main-nav a.active,
+[data-bs-theme="light"] .main-nav a:hover,
+[data-bs-theme="light"] .secure,
+[data-bs-theme="light"] .stream-card .preview-toggle {
+  background: #dcf4e7;
+  color: var(--green);
+}
+
+[data-bs-theme="light"] .match-hero,
+[data-bs-theme="light"] .promo,
+[data-bs-theme="light"] .stream-promo {
+  background: linear-gradient(120deg, #d9f1e4, #e8eaf6);
+  border-color: var(--border);
+}
+
+[data-bs-theme="light"] .team-pill b,
+[data-bs-theme="light"] .live-teams b,
+[data-bs-theme="light"] .club b,
+[data-bs-theme="light"] .tournament > b,
+[data-bs-theme="light"] .odds > span,
+[data-bs-theme="light"] .fixture-odds i,
+[data-bs-theme="light"] .bet-choice,
+[data-bs-theme="light"] .money-row span,
+[data-bs-theme="light"] .slot-art,
+[data-bs-theme="light"] .stream-art,
+[data-bs-theme="light"] .stream-card .preview-details {
+  background: #e9efeb;
+  border-color: var(--border);
+}
+
+[data-bs-theme="light"] .info-panel,
+[data-bs-theme="light"] .promo p,
+[data-bs-theme="light"] .stream-promo-copy p,
+[data-bs-theme="light"] .stream-card .preview-details {
+  color: var(--muted);
+}
+
+[data-bs-theme="light"] .schedule-fields .form-control,
+[data-bs-theme="light"] .schedule-fields .form-select,
+[data-bs-theme="light"] .bet-stake-label input {
+  background-color: var(--panel);
+  color: var(--white);
+  border-color: var(--border);
+}
+
+[data-bs-theme="light"] .schedule-fields .form-control::placeholder {
+  color: var(--muted);
+}
+
+[data-bs-theme="light"] .schedule-table {
+  --bs-table-color: var(--white);
+  --bs-table-striped-color: var(--white);
+  --bs-table-striped-bg: #e9efeb;
+}
+
+[data-bs-theme="light"] .btn-success {
+  --bs-btn-color: #ffffff;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #065c35;
+  --bs-btn-hover-border-color: #065c35;
+}
+
+[data-bs-theme="light"] .btn-outline-light {
+  --bs-btn-color: var(--white);
+  --bs-btn-border-color: var(--border);
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: var(--green);
+  --bs-btn-hover-border-color: var(--green);
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: var(--green);
+  --bs-btn-active-border-color: var(--green);
+}
+
+[data-bs-theme="light"] .deposit,
+[data-bs-theme="light"] .sport-tabs .selected,
+[data-bs-theme="light"] .skip-link {
+  color: #ffffff;
+}
